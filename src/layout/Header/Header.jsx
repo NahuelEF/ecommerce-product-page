@@ -1,11 +1,34 @@
 import { useState } from "react";
-import AvatarUser from "@/assets/images/image-avatar.png";
+import { CartIcon, CloseIcon, MenuIcon } from "@/assets/icons/";
 import Logo from "@/assets/icons/logo.svg";
-import { MenuIcon, CartIcon } from "@/assets/icons/";
+import AvatarUser from "@/assets/images/image-avatar.png";
 import { CustomButton } from "@/components";
-import { AppBar, Avatar, Badge, Box, Container, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
+import styled from "@emotion/styled";
+import {
+  AppBar,
+  Avatar,
+  Badge,
+  Box,
+  Container,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Toolbar,
+} from "@mui/material";
 
 const pages = ["Collections", "Men", "Women", "About", "Contact"];
+
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: "start",
+}));
 
 export default function Header() {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -19,10 +42,10 @@ export default function Header() {
   };
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position="static" elevation={0}>
+      <Container maxWidth="lg" sx={{ borderBottom: "2px solid", borderBottomColor:"primary.light" }}>
         <Toolbar disableGutters>
-          <Box component="a" href="/" sx={{ mr: 2, display: { xs: "none", md: "flex" }, flexWrap: "nowrap" }}>
+          <Box sx={{ mr: 2, display: { xs: "none", md: "flex" }, flexWrap: "nowrap" }} component="a" href="/">
             <img src={Logo} alt="Logo of Sneakers" />
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -36,63 +59,58 @@ export default function Header() {
             >
               <MenuIcon />
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+            <Box
               sx={{
-                display: { xs: "block", md: "none" },
+                maxWidth: "8.5625rem",
+                ml: 1,
+                display: { xs: "flex", md: "none" },
+                flexWrap: "nowrap",
+                alignSelf: "center",
               }}
+              component="a"
+              href="/"
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+              <img src={Logo} alt="Logo of Sneakers" />
+            </Box>
+            <Drawer sx={{ flexGrow: 0 }} anchor="left" open={Boolean(anchorElNav)} onClose={handleCloseNavMenu}>
+              <DrawerHeader>
+                <IconButton onClick={handleCloseNavMenu}>
+                  <CloseIcon />
+                </IconButton>
+              </DrawerHeader>
+              <List sx={{ width: "15.625rem" }}>
+                {pages.map((page) => (
+                  <ListItem key={page} disablePadding>
+                    <ListItemButton>
+                      <ListItemText
+                        primary={page}
+                        primaryTypographyProps={{ fontSize: 17, fontWeight: "fontWeightBold" }}
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                ))}
+              </List>
+            </Drawer>
           </Box>
 
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            LOGO
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, alignSelf: "stretch" }}>
             {pages.map((page) => (
-              <CustomButton key={page}>{page}</CustomButton>
+              <CustomButton key={page} disableRipple>
+                {page}
+              </CustomButton>
             ))}
           </Box>
 
           <Box sx={{ flexGrow: 0, display: "flex", gap: "1.375rem" }}>
             <IconButton size="medium" aria-label="cart">
-              <Badge badgeContent={2} color="error">
+              <Badge badgeContent={2} color="secondary">
                 <CartIcon />
               </Badge>
             </IconButton>
-            <IconButton sx={{ p: 0 }}>
+            <IconButton
+              disableRipple
+              sx={{ p: 0, border: "1px solid transparent", "&:hover": { borderColor: "secondary.main" } }}
+            >
               <Avatar alt="Remy Sharp" src={AvatarUser} />
             </IconButton>
           </Box>
