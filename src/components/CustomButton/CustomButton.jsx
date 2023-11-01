@@ -1,24 +1,18 @@
-import { Button } from "@mui/material";
+import styled from "@emotion/styled";
+import { ButtonBase } from "@mui/material";
 
-export default function CustomButton({ children, onClick }) {
-  return (
-    <Button
-      onClick={onClick}
-      sx={{
-        border: "1px solid transparent",
-        borderRadius: 0,
-        textTransform: "none",
-        color: "primary.contrastText",
-        fontSize: 15,
-        fontWeight: 400,
-        display: "block",
-        alignSelf: "stretch",
-        "&:hover": {
-          borderBottom: 1,
-        },
-      }}
-    >
-      {children}
-    </Button>
-  );
-}
+export const CustomButton = styled(ButtonBase)(({ theme }) => ({
+  borderBottom: `${theme.spacing(0.5)} solid transparent`,
+  borderRadius: 0,
+  padding: theme.spacing(0.75),
+  textTransform: "none",
+  color: theme.palette.text.primary,
+  fontFamily: theme.typography.fontFamily,
+  fontSize: "0.9375rem",
+  fontWeight: theme.typography.fontWeightRegular,
+  display: "block",
+  alignSelf: "stretch",
+  "&:hover": {
+    borderBottomColor: theme.palette.secondary.main,
+  },
+}));
