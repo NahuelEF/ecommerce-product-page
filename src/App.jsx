@@ -42,19 +42,23 @@ const CustomInput = styled(InputBase)(({ theme }) => ({
 }));
 const IMAGES_PRODUCT = [
   {
-    src: "src/assets/images/image-product-1-thumbnail.jpg",
+    id: 1,
+    src: "image-product-1-thumbnail.jpg",
     alt: "Image product 1 thumbnail",
   },
   {
-    src: "src/assets/images/image-product-2-thumbnail.jpg",
+    id: 2,
+    src: "image-product-2-thumbnail.jpg",
     alt: "Image product 2 thumbnail",
   },
   {
-    src: "src/assets/images/image-product-3-thumbnail.jpg",
+    id: 3,
+    src: "image-product-3-thumbnail.jpg",
     alt: "Image product 3 thumbnail",
   },
   {
-    src: "src/assets/images/image-product-4-thumbnail.jpg",
+    id: 4,
+    src: "image-product-4-thumbnail.jpg",
     alt: "Image product 4 thumbnail",
   },
 ];
@@ -74,8 +78,8 @@ export default function App() {
                 <MainImage src="src/assets/images/image-product-1.jpg" alt="Sneakers" />
                 <ImageList variant="standard" gap={31} cols={4} sx={{ my: 0 }}>
                   {IMAGES_PRODUCT.map((image) => (
-                    <ImageListItem key={image.src} sx={{ borderRadius: "15px", overflow: "hidden" }}>
-                      <img src={image.src} alt={image.src} />
+                    <ImageListItem key={image.id} sx={{ borderRadius: "15px", overflow: "hidden" }}>
+                      <img src={`src/assets/images/${image.src}`} alt={image.src} />
                     </ImageListItem>
                   ))}
                 </ImageList>
