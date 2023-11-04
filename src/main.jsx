@@ -19,10 +19,21 @@ const theme = createTheme({
       primary: "#1d2025",
       secondary: "#68707d",
     },
+    divider: "#f7f8fd",
   },
   typography: {
     fontFamily: "'Kumbh Sans', sans-serif",
     fontSize: 16,
+  },
+  components: {
+    MuiDivider: {
+      styleOverrides: {
+        root: () => ({ borderBottomWidth: "2px" }),
+      },
+    },
+  },
+  shape: {
+    borderRadius: 10,
   },
 });
 

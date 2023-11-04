@@ -4,9 +4,8 @@ import { ButtonBase } from "@mui/material";
 export const CustomButton = styled(ButtonBase)(({ theme }) => ({
   borderBottom: `${theme.spacing(0.5)} solid transparent`,
   borderRadius: 0,
-  padding: theme.spacing(0.75),
   textTransform: "none",
-  color: theme.palette.text.primary,
+  color: theme.palette.text.secondary,
   fontFamily: theme.typography.fontFamily,
   fontSize: "0.9375rem",
   fontWeight: theme.typography.fontWeightRegular,
@@ -14,5 +13,6 @@ export const CustomButton = styled(ButtonBase)(({ theme }) => ({
   alignSelf: "stretch",
   "&:hover": {
     borderBottomColor: theme.palette.secondary.main,
+    color: theme.palette.text.primary,
   },
 }));
