@@ -1,3 +1,8 @@
+import product1 from "@/assets/images/image-product-1.jpg";
+import product1thumbnail from "@/assets/images/image-product-1-thumbnail.jpg";
+import product2thumbnail from "@/assets/images/image-product-2-thumbnail.jpg";
+import product3thumbnail from "@/assets/images/image-product-3-thumbnail.jpg";
+import product4thumbnail from "@/assets/images/image-product-4-thumbnail.jpg";
 import {
   Box,
   Button,
@@ -10,9 +15,9 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import { CartIcon, MinusIcon, PlusIcon } from "./assets/icons";
 import { Header } from "./layout";
+import { styled } from "@mui/material/styles";
 
 const Lightbox = styled("div")`
   width: 100%;
@@ -43,22 +48,22 @@ const CustomInput = styled(InputBase)(({ theme }) => ({
 const IMAGES_PRODUCT = [
   {
     id: 1,
-    src: "image-product-1-thumbnail.jpg",
+    src: product1thumbnail,
     alt: "Image product 1 thumbnail",
   },
   {
     id: 2,
-    src: "image-product-2-thumbnail.jpg",
+    src: product2thumbnail,
     alt: "Image product 2 thumbnail",
   },
   {
     id: 3,
-    src: "image-product-3-thumbnail.jpg",
+    src: product3thumbnail,
     alt: "Image product 3 thumbnail",
   },
   {
     id: 4,
-    src: "image-product-4-thumbnail.jpg",
+    src: product4thumbnail,
     alt: "Image product 4 thumbnail",
   },
 ];
@@ -75,11 +80,11 @@ export default function App() {
               sx={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}
             >
               <Lightbox>
-                <MainImage src="src/assets/images/image-product-1.jpg" alt="Sneakers" />
+                <MainImage src={product1} alt="Sneakers" />
                 <ImageList variant="standard" gap={31} cols={4} sx={{ my: 0 }}>
                   {IMAGES_PRODUCT.map((image) => (
                     <ImageListItem key={image.id} sx={{ borderRadius: "15px", overflow: "hidden" }}>
-                      <img src={`src/assets/images/${image.src}`} alt={image.src} />
+                      <img src={image.src} alt={image.src} />
                     </ImageListItem>
                   ))}
                 </ImageList>
