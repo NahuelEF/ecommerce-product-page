@@ -19,7 +19,7 @@ import {
   ListItemText,
   Popover,
   Toolbar,
-  Typography
+  Typography,
 } from "@mui/material";
 
 const pages = ["Collections", "Men", "Women", "About", "Contact"];
@@ -109,7 +109,7 @@ export default function Header() {
             </Drawer>
           </Box>
 
-          <Box sx={{ mr: 7, display: { xs: "none", md: "flex" }, flexWrap: "nowrap" }} component="a" href="/">
+          <Box sx={{ mr: 7, display: { xs: "none", md: "flex" }, flexWrap: "nowrap" }} component="a" href="#">
             <img src={Logo} alt="Logo of Sneakers" />
           </Box>
           <Box sx={{ display: { xs: "none", md: "flex" }, alignSelf: "stretch", flexGrow: 1, gap: 4 }}>

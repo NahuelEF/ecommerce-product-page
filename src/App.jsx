@@ -1,8 +1,4 @@
-import product1 from "@/assets/images/image-product-1.jpg";
-import product1thumbnail from "@/assets/images/image-product-1-thumbnail.jpg";
-import product2thumbnail from "@/assets/images/image-product-2-thumbnail.jpg";
-import product3thumbnail from "@/assets/images/image-product-3-thumbnail.jpg";
-import product4thumbnail from "@/assets/images/image-product-4-thumbnail.jpg";
+import { product1, productThumbnail1, productThumbnail2, productThumbnail3, productThumbnail4 } from "@/assets/images";
 import {
   Box,
   Button,
@@ -15,9 +11,9 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { CartIcon, MinusIcon, PlusIcon } from "./assets/icons";
 import { Header } from "./layout";
-import { styled } from "@mui/material/styles";
 
 const Lightbox = styled("div")`
   width: 100%;
@@ -45,25 +41,26 @@ const CustomInput = styled(InputBase)(({ theme }) => ({
     flex: "1",
   },
 }));
+
 const IMAGES_PRODUCT = [
   {
     id: 1,
-    src: product1thumbnail,
+    src: productThumbnail1,
     alt: "Image product 1 thumbnail",
   },
   {
     id: 2,
-    src: product2thumbnail,
+    src: productThumbnail2,
     alt: "Image product 2 thumbnail",
   },
   {
     id: 3,
-    src: product3thumbnail,
+    src: productThumbnail3,
     alt: "Image product 3 thumbnail",
   },
   {
     id: 4,
-    src: product4thumbnail,
+    src: productThumbnail4,
     alt: "Image product 4 thumbnail",
   },
 ];
@@ -74,7 +71,15 @@ export default function App() {
       <Header />
       <Box component="main">
         <Container maxWidth="lg">
-          <Box sx={{ minHeight: "658px", display: "flex", alignItems: "center", gap: "24px 40px" }}>
+          <Box
+            sx={{
+              minHeight: "658px",
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              alignItems: "center",
+              gap: "1.5rem 2.5rem",
+            }}
+          >
             <Box
               component="section"
               sx={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}
@@ -90,7 +95,10 @@ export default function App() {
                 </ImageList>
               </Lightbox>
             </Box>
-            <Box component="section" sx={{ width: "100%", display: "flex", flexFlow: "column nowrap" }}>
+            <Box
+              component="section"
+              sx={{ width: "100%", display: "flex", alignItems: "center", flexFlow: "column nowrap" }}
+            >
               <Box sx={{ maxWidth: "26.5rem", mb: { xs: "1.5rem", md: "2.125rem" } }}>
                 <Typography
                   component="strong"
@@ -122,12 +130,12 @@ export default function App() {
                 </Typography>
                 <Box
                   sx={{
-                    width: { xs: "100%", md: "173px" },
+                    width: { sm: "100%", md: "173px" },
                     display: "flex",
                     flexFlow: "row wrap",
                     alignItems: "center",
                     justifyContent: "space-between",
-                    gap: { md: "10px" },
+                    rowGap: "10px",
                   }}
                 >
                   <Stack direction="row" alignItems="center" justifyContent="space-between" spacing={2} useFlexGap>
@@ -140,11 +148,11 @@ export default function App() {
                     <Chip
                       label="50%"
                       size="small"
-                      color="warning"
+                      color="secondary"
                       sx={{
-                        height: "27px",
-                        borderRadius: "5px",
-                        backgroundColor: "secondary.light",
+                        height: "1.6875rem",
+                        borderRadius: 0.5,
+                        bgcolor: "secondary.light",
                         color: "secondary.main",
                         fontSize: "1rem",
                         fontWeight: "fontWeightBold",
@@ -154,6 +162,7 @@ export default function App() {
                   <Typography
                     component="s"
                     sx={{
+                      color: "text.secondary",
                       textDecorationLine: "line-through",
                       fontSize: "1rem",
                       fontWeight: "fontWeightBold",
@@ -167,10 +176,11 @@ export default function App() {
               <Box
                 component="form"
                 sx={{
+                  maxWidth: "27.8125rem",
+                  maxHeight: "3.375rem",
                   display: "flex",
                   flexFlow: "row wrap",
-                  alignItems: "center",
-                  justifyContent: "space-between",
+                  alignItems: "stretch",
                   gap: "15px",
                 }}
               >
@@ -179,24 +189,36 @@ export default function App() {
                   alignItems="stretch"
                   justifyContent="space-between"
                   sx={{
-                    width: { xs: "100%", md: "9.8125rem" },
-                    padding: ".7188rem 1rem",
+                    width: "9.8125rem",
+                    height: "3.4375rem",
                     backgroundColor: "primary.light",
-                    borderRadius: "10px",
+                    borderRadius: 1,
+                    flex: "1 0 9.8125rem",
                   }}
                 >
-                  <IconButton aria-label="remove a product" disableRipple>
+                  <IconButton
+                    aria-label="remove a product"
+                    sx={{
+                      width: "55px",
+                      borderRadius: 1,
+                    }}
+                  >
                     <MinusIcon />
                   </IconButton>
                   <CustomInput
-                    id="count"
-                    type="number"
+                    type="text"
                     readOnly
                     defaultValue="0"
                     fullWidth
                     inputProps={{ "aria-label": "number of products" }}
                   />
-                  <IconButton aria-label="add a product" disableRipple>
+                  <IconButton
+                    aria-label="add a product"
+                    sx={{
+                      width: "55px",
+                      borderRadius: 1,
+                    }}
+                  >
                     <PlusIcon />
                   </IconButton>
                 </Stack>
@@ -206,14 +228,14 @@ export default function App() {
                   startIcon={<CartIcon />}
                   size="large"
                   sx={{
-                    width: { xs: "100%", md: "auto" },
-                    padding: ".8438rem 4.8125rem",
+                    width: "17.0625rem",
                     textTransform: "none",
                     fontSize: "1rem",
                     fontWeight: "fontWeightBold",
                     "& .MuiButton-startIcon": {
                       marginRight: "1rem",
                     },
+                    flex: "1 0 17.0625rem",
                   }}
                 >
                   Add to cart
