@@ -1,41 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { theme } from "./styles/index.jsx";
 import App from "./App.jsx";
 import "./index.css";
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#ffffff",
-      light: "#f7f8fd",
-    },
-    secondary: {
-      main: "#ff7d1a",
-      light: "#ffede0",
-      contrastText: "#ffffff",
-    },
-    text: {
-      primary: "#1d2025",
-      secondary: "#68707d",
-    },
-    divider: "#f7f8fd",
-  },
-  typography: {
-    fontFamily: "'Kumbh Sans', sans-serif",
-    fontSize: 16,
-  },
-  components: {
-    MuiDivider: {
-      styleOverrides: {
-        root: () => ({ borderBottomWidth: "2px" }),
-      },
-    },
-  },
-  shape: {
-    borderRadius: 10,
-  },
-});
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
