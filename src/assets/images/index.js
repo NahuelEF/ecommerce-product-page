@@ -1,3 +1,4 @@
+export { default as userAvatar } from "./image-avatar.png";
 export { default as product1 } from "./image-product-1.jpg";
 export { default as product2 } from "./image-product-2.jpg";
 export { default as product3 } from "./image-product-3.jpg";

@@ -5,11 +5,10 @@ import styled from "@emotion/styled";
 
 const FormProduct = styled(Box)({
   maxWidth: "27.8125rem",
-  maxHeight: "3.375rem",
   display: "flex",
   flexFlow: "row wrap",
   alignItems: "stretch",
-  gap: "15px",
+  gap: ".9375rem",
 });
 
 const ButtonGroup = styled(Stack)(({ theme }) => ({

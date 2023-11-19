@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CartIcon, CloseIcon, DeleteIcon, MenuIcon } from "@/assets/icons/";
 import Logo from "@/assets/icons/logo.svg";
-import AvatarUser from "@/assets/images/image-avatar.png";
+import { userAvatar, product1Thumbnail } from "@/assets/images";
 import { CustomButton } from "@/components";
 import styled from "@emotion/styled";
 import {
@@ -9,6 +9,7 @@ import {
   Avatar,
   Badge,
   Box,
+  Button,
   Container,
   Divider,
   Drawer,
@@ -33,7 +34,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "start",
 }));
 
-export default function Header({ countProducts }) {
+export default function Header({ countProducts, deleteProducts }) {
   const [anchorElNav, setAnchorElNav] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -68,7 +69,7 @@ export default function Header({ countProducts }) {
         <Toolbar
           disableGutters
           sx={{
-            minHeight: { sm: "68px", md: "112px" },
+            minHeight: { sm: "4.25rem", md: "7rem" },
           }}
         >
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -147,54 +148,89 @@ export default function Header({ countProducts }) {
               }}
               elevation={12}
               sx={{
-                "& .MuiPopover-paper": { width: { xs: "100%", sm: "360px" }, height: "256px" },
+                "& .MuiPopover-paper": { width: { xs: "100%", sm: "22.5rem" }, height: "16rem" },
               }}
             >
-              <Typography sx={{ py: 3.375, px: 3, fontSize: ".9375rem", fontWeight: "fontWeightBold" }}>
+              <Typography
+                variant="h3"
+                sx={{ py: 3.375, px: 3, lineHeight: "inherit", fontSize: ".9375rem", fontWeight: "fontWeightBold" }}
+              >
                 Cart
               </Typography>
               <Divider />
-              {countProducts ? (
-                <List>
-                  <ListItem
-                    secondaryAction={
-                      <IconButton size="large">
-                        <DeleteIcon />
-                      </IconButton>
-                    }
-                    sx={{ bgcolor: "secondary.light" }}
-                  >
-                    <ListItemAvatar>
-                      <Avatar>H</Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary="Fall Limited Edition Sneakers"
-                      secondary={`${formatCurrency(priceProduct)} x ${countProducts} ${formatCurrency(totalPrice)}`}
-                    />
-                  </ListItem>
-                </List>
-              ) : (
-                <Box
-                  sx={{
-                    height: "calc(100% - 79px)",
-                    p: 3,
-                    display: "flex",
-                    flexFlow: "column nowrap",
-                    justifyContent: "center",
-                  }}
-                >
+              <Box
+                sx={{
+                  height: "calc(100% - 79px)",
+                  display: "flex",
+                  flexFlow: "column nowrap",
+                  alignItems: "center",
+                }}
+              >
+                {countProducts ? (
+                  <>
+                    <List sx={{ width: "100%" }}>
+                      <ListItem
+                        secondaryAction={
+                          <IconButton size="large" aria-label="delete product" onClick={deleteProducts}>
+                            <DeleteIcon />
+                          </IconButton>
+                        }
+                      >
+                        <ListItemAvatar>
+                          <Avatar variant="rounded" src={product1Thumbnail} sx={{ borderRadius: "4px" }} />
+                        </ListItemAvatar>
+                        <ListItemText
+                          primary="Fall Limited Edition Sneakers"
+                          primaryTypographyProps={{ fontSize: 16, fontWeight: "fontWeightMedium" }}
+                          secondary={
+                            <>
+                              {`${formatCurrency(priceProduct)} x ${countProducts} `}
+                              <Typography
+                                component="span"
+                                variant="inherit"
+                                sx={{ fontWeight: "fontWeightBold", letterSpacing: "inherit", display: "inline" }}
+                              >
+                                {formatCurrency(totalPrice)}
+                              </Typography>
+                            </>
+                          }
+                          secondaryTypographyProps={{
+                            color: "inherit",
+                            fontSize: 16,
+                            fontWeight: "fontWeightMedium",
+                            letterSpacing: "0.32px",
+                          }}
+                        />
+                      </ListItem>
+                    </List>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      size="large"
+                      disableElevation
+                      sx={{
+                        width: "calc(100% - 24px)",
+                        textTransform: "none",
+                        fontSize: "1rem",
+                        fontWeight: "fontWeightBold",
+                      }}
+                    >
+                      Checkout
+                    </Button>
+                  </>
+                ) : (
                   <Typography
                     align="center"
-                    sx={{ color: "text.secondary", fontSize: ".9375rem", fontWeight: "fontWeightBold" }}
+                    sx={{ my: "auto", color: "text.secondary", fontSize: ".9375rem", fontWeight: "fontWeightBold" }}
                   >
                     Your cart is empty.
                   </Typography>
-                </Box>
-              )}
+                )}
+              </Box>
             </Popover>
             <Avatar
               alt="Remy Sharp"
-              src={AvatarUser}
+              src={userAvatar}
               sx={{ p: 0, border: "1px solid transparent", "&:hover, &:active": { borderColor: "secondary.main" } }}
             />
           </Box>
