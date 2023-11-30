@@ -3,13 +3,16 @@ import { CartIcon, MinusIcon, PlusIcon } from "@/assets/icons";
 import { Box, Button, IconButton, InputBase, Stack } from "@mui/material";
 import styled from "@emotion/styled";
 
-const FormProduct = styled(Box)({
+const FormProduct = styled(Box)(({ theme }) => ({
   maxWidth: "27.8125rem",
   display: "flex",
   flexFlow: "row wrap",
   alignItems: "stretch",
   gap: ".9375rem",
-});
+  [theme.breakpoints.down("md")]: {
+    marginBottom: theme.spacing(2),
+  },
+}));
 
 const ButtonGroup = styled(Stack)(({ theme }) => ({
   width: "9.8125rem",

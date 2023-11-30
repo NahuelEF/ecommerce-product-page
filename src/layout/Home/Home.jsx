@@ -1,75 +1,5 @@
-import {
-  product1,
-  product1Thumbnail,
-  product2,
-  product2Thumbnail,
-  product3,
-  product3Thumbnail,
-  product4,
-  product4Thumbnail,
-} from "@/assets/images";
-import { AddProduct } from "@/components";
-import { Box, Chip, Container, ImageList, ImageListItem, Stack, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
-
-const Lightbox = styled("div")`
-  width: 100%;
-  max-width: 27.9375rem;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  gap: 30px;
-`;
-
-const MainImage = styled("img")`
-  border-radius: 15px;
-`;
-
-const PRODUCT_IMAGES = [
-  {
-    id: 1,
-    src: product1,
-    alt: "Image of Product 1",
-  },
-  {
-    id: 2,
-    src: product2,
-    alt: "Image of Producto 2",
-  },
-  {
-    id: 3,
-    src: product3,
-    alt: "Image of Product 3",
-  },
-  {
-    id: 4,
-    src: product4,
-    alt: "Image of Product 4",
-  },
-];
-
-const PRODUCT_THUMBNAIL_IMAGES = [
-  {
-    id: 1,
-    src: product1Thumbnail,
-    alt: "Thumbnail image of Product 1",
-  },
-  {
-    id: 2,
-    src: product2Thumbnail,
-    alt: "Thumbnail image of Producto 2",
-  },
-  {
-    id: 3,
-    src: product3Thumbnail,
-    alt: "Thumbnail image of Product 3",
-  },
-  {
-    id: 4,
-    src: product4Thumbnail,
-    alt: "Thumbnail image of Product 4",
-  },
-];
+import { AddProduct, ImageGallery } from "@/components";
+import { Box, Chip, Container, Stack, Typography } from "@mui/material";
 
 export default function Home({ addToCart }) {
   return (
@@ -88,16 +18,7 @@ export default function Home({ addToCart }) {
             component="section"
             sx={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}
           >
-            <Lightbox>
-              <MainImage src={product1} alt="Sneakers" />
-              <ImageList variant="standard" gap={31} cols={4} sx={{ my: 0 }}>
-                {PRODUCT_THUMBNAIL_IMAGES.map((image) => (
-                  <ImageListItem key={image.id} sx={{ borderRadius: "15px", overflow: "hidden" }}>
-                    <img src={image.src} alt={image.src} />
-                  </ImageListItem>
-                ))}
-              </ImageList>
-            </Lightbox>
+            <ImageGallery />
           </Box>
           <Box
             component="section"

@@ -1,2 +1,3 @@
-export { AddProduct } from "./AddProduct/AddProduct";
-export { CustomButton } from "./CustomButton/CustomButton";
+export * from "./AddProduct/AddProduct";
+export * from "./CustomButton/CustomButton";
+export * from "./ImageGallery/ImageGallery";
